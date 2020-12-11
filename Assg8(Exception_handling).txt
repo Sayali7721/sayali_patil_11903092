@@ -1,0 +1,47 @@
+Q.1
+
+	import sys
+	randomList = ['a', 0, 10]
+
+	for entry in randomList:
+    	try:
+        	print("The entry is", entry)
+        	r = 1/int(entry)
+    	    break
+    	except:
+        	print("Oops !", sys.exc_info()[0], "Occured")
+        	print()
+        	print("Next entry :")
+	
+	print("The reciprocal of", entry,"Is",r)
+
+OUTPUT :
+	The entry is a
+	Oops ! <class 'ValueError'> Occured
+
+	Next entry :
+	The entry is 0
+	Oops ! <class 'ZeroDivisionError'> Occured
+	
+	Next entry :
+	The entry is 10
+	The reciprocal of 10 Is 0.1
+
+Q.2
+	import sys
+
+	try:
+	  file = open("COEP.txt", "r")
+	  s = file.read()
+	  print(s)
+
+	except:
+	  print("Sorry ! File NOT found")
+	  print("Oops !", sys.exc_info()[0], "Occured")
+	finally:
+	    print("FILE CLOSED")
+	    file.close()
+
+OUTPUT :
+	College Of Engineering , Pune .
+	FILE CLOSED

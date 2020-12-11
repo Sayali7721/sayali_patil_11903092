@@ -1,0 +1,44 @@
+$ objdump -l -d -r A-4.o
+
+A-4.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 50             sub    $0x50,%rsp
+   8:   e8 00 00 00 00          callq  d <main+0xd>
+                        9: R_X86_64_PC32        __main
+   d:   c7 45 d8 01 00 00 00    movl   $0x1,-0x28(%rbp)
+  14:   c7 45 dc 02 00 00 00    movl   $0x2,-0x24(%rbp)
+  1b:   c7 45 e0 03 00 00 00    movl   $0x3,-0x20(%rbp)
+  22:   c7 45 fc 00 00 00 00    movl   $0x0,-0x4(%rbp)
+  29:   eb 16                   jmp    41 <main+0x41>
+  2b:   8b 45 fc                mov    -0x4(%rbp),%eax
+  2e:   48 98                   cltq
+  30:   8b 54 85 d8             mov    -0x28(%rbp,%rax,4),%edx
+  34:   8b 45 fc                mov    -0x4(%rbp),%eax
+  37:   48 98                   cltq
+  39:   89 54 85 e4             mov    %edx,-0x1c(%rbp,%rax,4)
+  3d:   83 45 fc 01             addl   $0x1,-0x4(%rbp)
+  41:   83 7d fc 02             cmpl   $0x2,-0x4(%rbp)
+  45:   7e e4                   jle    2b <main+0x2b>
+  47:   48 8d 45 e4             lea    -0x1c(%rbp),%rax
+  4b:   48 89 45 f0             mov    %rax,-0x10(%rbp)
+  4f:   48 8b 45 f0             mov    -0x10(%rbp),%rax
+  53:   48 83 c0 08             add    $0x8,%rax
+  57:   c7 00 05 00 00 00       movl   $0x5,(%rax)
+  5d:   b8 00 00 00 00          mov    $0x0,%eax
+  62:   48 83 c4 50             add    $0x50,%rsp
+  66:   5d                      pop    %rbp
+  67:   c3                      retq
+  68:   90                      nop
+  69:   90                      nop
+  6a:   90                      nop
+  6b:   90                      nop
+  6c:   90                      nop
+  6d:   90                      nop
+  6e:   90                      nop
+  6f:   90                      nop

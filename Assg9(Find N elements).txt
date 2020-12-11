@@ -1,0 +1,18 @@
+;Finding N elements in M element's List
+(defun first-n-loop (list n)
+  "Returns first n elements of the list."
+  (loop for i below n
+     collect (nth i list)))
+
+
+
+Break 4 [5]> (load "find.lisp")
+;; Loading file find.lisp ...
+;; Loaded file find.lisp
+T
+
+Break 4 [5]> (first-n-loop '(a b c d e) 3)
+(A B C)
+
+Break 4 [5]> (first-n-loop '(a b c d e f g 10 h i j k l m ) 8)
+(A B C D E F G 10)

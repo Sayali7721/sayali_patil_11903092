@@ -1,0 +1,31 @@
+$ objdump -l -d -r B-2.o
+
+B-2.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 30             sub    $0x30,%rsp
+   8:   e8 00 00 00 00          callq  d <main+0xd>
+                        9: R_X86_64_PC32        __main
+   d:   c7 45 f8 0a 00 00 00    movl   $0xa,-0x8(%rbp)
+  14:   c7 45 fc 00 00 00 00    movl   $0x0,-0x4(%rbp)
+  1b:   eb 10                   jmp    2d <main+0x2d>
+  1d:   48 8d 05 00 00 00 00    lea    0x0(%rip),%rax        # 24 <main+0x24>
+                        20: R_X86_64_PC32       N-0x4
+  24:   8b 00                   mov    (%rax),%eax
+  26:   01 45 f8                add    %eax,-0x8(%rbp)
+  29:   83 45 fc 01             addl   $0x1,-0x4(%rbp)
+  2d:   83 7d fc 03             cmpl   $0x3,-0x4(%rbp)
+  31:   7e ea                   jle    1d <main+0x1d>
+  33:   8b 45 f8                mov    -0x8(%rbp),%eax
+  36:   48 83 c4 30             add    $0x30,%rsp
+  3a:   5d                      pop    %rbp
+  3b:   c3                      retq
+  3c:   90                      nop
+  3d:   90                      nop
+  3e:   90                      nop
+  3f:   90                      nop

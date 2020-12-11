@@ -1,0 +1,56 @@
+instructor(t1,maths).
+instructor(t2,maths).
+instructor(t3,dsa).
+instructor(t4,ppl).
+instructor(t5,dld).
+instructor(t6,dtl).
+
+dept_subject(maths_dept,maths).
+dept_subject(comp_dept,dsa).
+dept_subject(comp_dept,ppl).
+dept_subject(comp_dept,dld).
+dept_subject(it_dept,dtl).
+
+enroll(s1,maths).
+enroll(s1,dsa).
+enroll(s1,dtl).
+enroll(s2,maths).
+enroll(s3,dld).
+enroll(s3,ppl).
+enroll(s4,dsa).
+enroll(s4,maths).
+enroll(s4,dtl).
+enroll(s4,ppl).
+enroll(s5,dld).
+enroll(s5,maths).
+
+teaches(P,S) :- instructor(P,C),enroll(S,C).
+teacher_dept(P,DT) :-  instructor(P,C),dept_subject(DT,C).
+
+OUTPUT :
+
+	| ?- enroll(s1,X).
+	X = maths ? a
+	X = dsa
+	X = dtl
+	(46 ms) yes
+
+	| ?- enroll(s2,X).
+	X = maths
+	(16 ms) yes
+
+	| ?- instructor(Y,maths).
+	Y = t1 ? a
+	Y = t2
+	(16 ms) no
+	
+	| ?- teaches(t5,S).
+	S = s3 ? ;
+	S = s5 ? ;
+	(47 ms) no
+
+	| ?- teacher_dept(P,comp_dept).
+	P = t3 ? ;
+	P = t4 ? ;
+	P = t5 ? ;
+	(16 ms) no

@@ -1,0 +1,150 @@
+import math
+import turtle
+
+class polygon():
+    def __init__(self):
+        print("A polygon is 2-D shape formed with straight lines")
+
+class ThreeD():
+    def __init__(self):
+        print("A shape in 3-Dimensional plane")
+
+
+class rectangle(polygon):
+    def __init__(self,len,brd):
+        self.len = len
+        self.brd = brd
+        super().__init__()
+    def area(self):
+        print(self.len*self.brd)
+    def shape(self):
+        t = turtle.Turtle()
+        for i in range(4):
+            if i % 2 == 0 :
+                t.forward(self.len)
+                t.left(90)
+            else :
+                t.forward(self.brd)
+                t.left(90)
+
+
+class square(polygon):
+    def __init__(self,side):
+        self.side = side
+        super().__init__()
+    def area(self):
+        print(self.side**2)
+    def shape(self):
+        t = turtle.Turtle()
+        for i in range(4):
+            t.forward(self.side)
+            t.right(90)
+
+class circle():
+    def __init__(self,rad):
+        self.rad = rad
+    def area(self):
+        print(self.rad*self.rad)
+    def shape(self):
+        turtle.circle(self.rad)
+
+
+class triangle(polygon):
+    def __init__(self,base,height):
+        self.base = base
+        self.height = height
+        super().__init__()
+    def area(self):
+        print((self.height*self.base)/2)
+    def shape(self):
+        wn = turtle.Screen()
+        tess = turtle.Turtle()
+        tess.penup()
+        tess.goto(self.height,self.base)
+        tess.pendown()
+        for i in range(3):
+            tess.forward(self.base)
+            tess.left(120)
+            tess.forward(self.base)
+
+class hexagon(polygon):
+    def __init__(self,side):
+        self.side = side
+        super().__init__()
+    def area(self):
+        print(3 * (math.sqrt(3)/2) * (self.side**2))
+    def shape(self):
+        wn = turtle.Screen()
+        tess = turtle.Turtle()
+        for i in range(6):
+            tess.forward(self.side)
+            tess.left(300)
+
+class rhombus(polygon):
+    def __init__(self,dig1,dig2):
+        self.dig1 = dig1
+        self.dig2 = dig2
+        super().__init__()
+    def area(self):
+        print((self.dig1*self.dig2)/2)
+    def shape(self):
+        wn = turtle.Screen()
+        tess = turtle.Turtle()
+        tess.penup()
+        tess.goto(0, 100)
+        tess.pendown()
+        tess.goto(100, 200)
+        tess.goto(200, 100)
+        tess.goto(100, 0)
+        tess.goto(0, 100)
+
+class octagon(polygon):
+    def __init__(self,side):
+        self.side = side
+        super().__init__()
+    def area(self):
+        print(2 * (math.sqrt(2)+1) * (self.side**2))
+    def shape(self):
+        wn = turtle.Screen()
+        tess = turtle.Turtle()
+        for i in range(8):
+            tess.forward(self.side)
+            tess.left(45)
+
+class parallelogram(polygon):
+    def __init__(self,s1,s2):
+        self.s1 = s1
+        self.s2 = s2
+        super().__init__()
+    def area(self):
+        print(2 * (math.sqrt(2)+1) * (self.s1**2))
+    def shape(self):
+        wn = turtle.Screen()
+        tess = turtle.Turtle()
+        for i in range(4):
+            if(i % 2 == 0):
+                tess.forward(self.s1)
+                tess.right(110)
+            else:
+                tess.forward(self.s2)
+                tess.right(70)
+
+class cube(ThreeD):
+    def __init__(self, side):
+        self.side = side
+        super().__init__()
+    def area(self):
+        print(6 * (self.side**2))
+
+
+class sphere(ThreeD):
+    def __init__(self, r):
+        self.radius = r
+        super().__init__()
+    def area(self):
+        print(4 * math.pi * (self.radius**2))
+
+#object of shape rectangle
+r = octagon(50)
+r.area()
+r.shape()

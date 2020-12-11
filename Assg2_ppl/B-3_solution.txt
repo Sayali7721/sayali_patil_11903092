@@ -1,0 +1,50 @@
+$ objdump -l -d -r B-3.o
+
+B-3.o:     file format pe-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   55                      push   %rbp
+   1:   48 89 e5                mov    %rsp,%rbp
+   4:   48 83 ec 30             sub    $0x30,%rsp
+   8:   e8 00 00 00 00          callq  d <main+0xd>
+                        9: R_X86_64_PC32        __main
+   d:   c7 45 fc 04 00 00 00    movl   $0x4,-0x4(%rbp)
+  14:   eb 13                   jmp    29 <main+0x29>
+  16:   83 7d fc 03             cmpl   $0x3,-0x4(%rbp)
+  1a:   7f 06                   jg     22 <main+0x22>
+  1c:   83 45 f8 02             addl   $0x2,-0x8(%rbp)
+  20:   eb 03                   jmp    25 <main+0x25>
+  22:   d1 65 f8                shll   -0x8(%rbp)
+  25:   83 45 fc 01             addl   $0x1,-0x4(%rbp)
+  29:   83 7d fc 63             cmpl   $0x63,-0x4(%rbp)
+  2d:   7e e7                   jle    16 <main+0x16>
+  2f:   8b 55 f8                mov    -0x8(%rbp),%edx
+  32:   8b 45 fc                mov    -0x4(%rbp),%eax
+  35:   41 89 d0                mov    %edx,%r8d
+  38:   89 c2                   mov    %eax,%edx
+  3a:   48 8d 0d 00 00 00 00    lea    0x0(%rip),%rcx        # 41 <main+0x41>
+                        3d: R_X86_64_PC32       .rdata
+  41:   e8 00 00 00 00          callq  46 <main+0x46>
+                        42: R_X86_64_PC32       printf
+  46:   b8 00 00 00 00          mov    $0x0,%eax
+  4b:   48 83 c4 30             add    $0x30,%rsp
+  4f:   5d                      pop    %rbp
+  50:   c3                      retq
+  51:   90                      nop
+  52:   90                      nop
+  53:   90                      nop
+  54:   90                      nop
+  55:   90                      nop
+  56:   90                      nop
+  57:   90                      nop
+  58:   90                      nop
+  59:   90                      nop
+  5a:   90                      nop
+  5b:   90                      nop
+  5c:   90                      nop
+  5d:   90                      nop
+  5e:   90                      nop
+  5f:   90                      nop

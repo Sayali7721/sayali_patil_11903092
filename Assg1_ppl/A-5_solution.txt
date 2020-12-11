@@ -1,0 +1,104 @@
+                                                                                                |
+;; Function main (main, funcdef_no=0, decl_uid=1907, cgraph_uid=1, symbol_order=0)              |;; Function main (main, funcdef_no=0, decl_uid=1907, cgraph_uid=1, symbol_order=0)
+                                                                                                |
+;; 1 loops found                                                                                |main ()
+;;                                                                                              |{
+;; Loop 0                                                                                       |  int d;
+;;  header 0, latch 1                                                                           |  int c;
+;;  depth 0, outer -1                                                                           |  int b;
+;;  nodes: 0 1 2 3 4 5 6                                                                        |  int a;
+;; 2 succs { 3 4 }                                                                              |  int D.1917;
+;; 3 succs { 5 }                                                                                |  int _10;
+;; 4 succs { 5 }                                                                                |
+;; 5 succs { 6 }                                                                                |  <bb 2> :
+;; 6 succs { 1 }                                                                                |  d_3 = 10;
+main ()                                                                                         |  if (c_4(D) > d_3)
+{                                                                                               |    goto <bb 3>; [INV]
+  int d;                                                                                        |  else
+  int c;                                                                                        |    goto <bb 4>; [INV]
+  int b;                                                                                        |
+  int a;                                                                                        |  <bb 3> :
+  int D.1917;                                                                                   |  a_7 = 3;
+                                                                                                |  b_8 = 2;
+  <bb 2> :                                                                                      |  goto <bb 5>; [INV]
+  d = 10;                                                                                       |
+  if (c > d)                                                                                    |  <bb 4> :
+    goto <bb 3>; [INV]                                                                          |  a_5 = 2;
+  else                                                                                          |  b_6 = 3;
+    goto <bb 4>; [INV]                                                                          |
+                                                                                                |  <bb 5> :
+  <bb 3> :                                                                                      |  # a_1 = PHI <a_7(3), a_5(4)>
+  a = 3;                                                                                        |  # b_2 = PHI <b_8(3), b_6(4)>
+  b = 2;                                                                                        |  c_9 = a_1 + b_2;
+  goto <bb 5>; [INV]                                                                            |  _10 = 0;
+                                                                                                |
+  <bb 4> :                                                                                      |  <bb 6> :
+  a = 2;                                                                                        |<L3>:
+  b = 3;                                                                                        |  return _10;
+                                                                                                |
+  <bb 5> :                                                                                      |}
+  c = a + b;                                                                                    
+  D.1917 = 0;                                                                                   
+                                                                                                
+  <bb 6> :                                                                                      
+<L3>:                                                                                           
+  return D.1917;                                                                                
+                                                                                                
+} 
+
+
+
+
+ 1.   Do you notice that each usage of local variable as an operand uses a
+      suffix that can be tracked to it's assignment? Why do some variables
+      have a suffix `(D)'?
+ Ans: Yes, each usage of local variable as an operand uses a suffix.
+      (D) suffix is used to indicate that variable c is not initialized. 
+        
+ 2.   Find the point in the CFG in  which the paths of the two assignments
+      to variable `a'  and `b' merge. You will notice  that PHI statements
+      have  been  introduced.  Can  you   guess  the  syntax  of  the  PHI
+      statements?
+ Ans: Syntax: (variable to be assigned) 
+      = PHI <(variable to assign in case-1), (variable to assign in case-2), . . .> 
+      
+ 3.   Can you think of an example in which a PHI node merges more than two
+      versions of a variable?
+ Ans: A switch statement can result in a merge of more than two paths (and
+      hence possibly more than two assignments). Consider:
+
+            int main()
+            {
+                int a, b;
+                switch (a)
+                {
+                    case 1:
+                        b = 2;
+                        break;
+                    case 2:
+                        b = 3;
+                        break;
+                    case 3:
+                        b = 4;
+                    case 4:
+                        b = 5;
+                        break;
+                    case 5:
+                    case 6:
+                        b = 6;
+                        break;
+                    default:
+                        b = 7;
+                }
+                return b;
+            }
+            
+            In this case  the PHI node at  the end of the  switch statement will
+            merge multiple assignments such as:
+
+            # b_1 = PHI <b_4(3), b_5(4), b_7(6), b_8(7), b_9(8)>
+
+
+
+
+                                                                                              

@@ -1,0 +1,98 @@
+int Z;                                                                                          |f ()
+                                                                                                |{
+void f()                                                                                        |  int a;
+{                                                                                               |  int b;
+        int a, b, c;                                                                            |  int c;
+        a = Z;                                                                                  |
+        if (a < 10) {                                                                           |  a = Z;
+                b = 5;                                                                          |  if (a <= 9) goto <D.1914>; else goto <D.1915>;
+                c = 17;                                                                         |  <D.1914>:
+        } else {                                                                                |  b = 5;
+                b = 6;                                                                          |  c = 17;
+                c = 20;                                                                         |  goto <D.1916>;
+                if (a == 0) {                                                                   |  <D.1915>:
+                        c = 0;                                                                  |  b = 6;
+                }                                                                               |  c = 20;
+        }                                                                                       |  if (a == 0) goto <D.1917>; else goto <D.1918>;
+        Z = b * 10 + c;                                                                         |  <D.1917>:
+}                                                                                               |  c = 0;
+                                                                                                |  <D.1918>:
+~                                                                                               |  <D.1916>:
+~                                                                                               |  _1 = b * 10;
+~                                                                                               |  _2 = c + _1;
+~                                                                                               |  Z = _2;
+~                                                                                               |}
+
+
+
+CFG
+---
+
+
+int Z;                                                                                          |
+                                                                                                |;; Function f (f, funcdef_no=0, decl_uid=1908, cgraph_uid=1, symbol_order=1)
+void f()                                                                                        |
+{                                                                                               |;; 1 loops found
+        int a, b, c;                                                                            |;;
+        a = Z;                                                                                  |;; Loop 0
+        if (a < 10) {                                                                           |;;  header 0, latch 1
+                b = 5;                                                                          |;;  depth 0, outer -1
+                c = 17;                                                                         |;;  nodes: 0 1 2 3 4 5 6
+        } else {                                                                                |;; 2 succs { 3 4 }
+                b = 6;                                                                          |;; 3 succs { 6 }
+                c = 20;                                                                         |;; 4 succs { 5 6 }
+                if (a == 0) {                                                                   |;; 5 succs { 6 }
+                        c = 0;                                                                  |;; 6 succs { 1 }
+                }                                                                               |f ()
+        }                                                                                       |{
+        Z = b * 10 + c;                                                                         |  int c;
+}                                                                                               |  int b;
+                                                                                                |  int a;
+~                                                                                               |
+~                                                                                               |  <bb 2> :
+~                                                                                               |  a = Z;
+~                                                                                               |  if (a <= 9)
+~                                                                                               |    goto <bb 3>; [INV]
+~                                                                                               |  else
+~                                                                                               |    goto <bb 4>; [INV]
+~                                                                                               |
+~                                                                                               |  <bb 3> :
+~                                                                                               |  b = 5;
+~                                                                                               |  c = 17;
+~                                                                                               |  goto <bb 6>; [INV]
+~                                                                                               |
+~                                                                                               |  <bb 4> :
+~                                                                                               |  b = 6;
+~                                                                                               |  c = 20;
+~                                                                                               |  if (a == 0)
+~                                                                                               |    goto <bb 5>; [INV]
+~                                                                                               |  else
+~                                                                                               |    goto <bb 6>; [INV]
+~                                                                                               |
+~                                                                                               |  <bb 5> :
+~                                                                                               |  c = 0;
+~                                                                                               |
+~                                                                                               |  <bb 6> :
+~                                                                                               |  _1 = b * 10;
+~                                                                                               |  _2 = c + _1;
+~                                                                                               |  Z = _2;
+~                                                                                               |  return;
+
+
+
+
+
+ 1.    How have if-blocks  been translated into GIMPLE  statements? Can you
+       differentiate between conditional and unconditional gotos?
+ Ans : If-else blocks been translated to Goto statements in GIMPLE files.
+       In conditional gotos, condition is present based on it's truth values 
+       Task is performed or Rejected. While in Unconditional gotos it will 
+       have jump statements that passes control to a different part of program.
+
+ 2.    Repeat  the  above compilation,  but  now  asking for  another  dump
+       that  of  the pass  "cfg".  View  this  pass  and say  whether  this
+       representation makes it easier to  read and understand GIMPLEs. Draw
+       the control-flow graph  of the program A-2.c on a  piece of paper by
+       looking at the CFG dump.	
+ Ans : It's a bit easier to see the control flow in this representation, but
+       slightly less concise in terms of number of lines. 

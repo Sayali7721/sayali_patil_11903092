@@ -1,0 +1,108 @@
+class Animal():
+    def __init__(self,leg = 4,eye = 2):
+        self.leg = leg
+        self.eye = eye
+        print("Legs =  ",  self.leg)
+        print("Eyes =  ",  self.eye)
+
+class wild():
+    def place(self):
+        print("jungle")
+
+class domestic():
+    def __init__(self, h):
+        self.habitat = h;
+    def place(self):
+        print(self.habitat)
+
+#wild
+class Tiger(wild,Animal):
+    def speak(self):
+        print("Roar")
+    def speciality(self):
+        print("India's National Animal")
+
+class Lion(wild,Animal):
+    def speak(self):
+        print("Roar")
+    def speciality(self):
+        print("King of Animal")
+
+class Horse(wild,Animal):
+    def speak(self):
+        print("Snort")
+    def speciality(self):
+        print("Faster Animal")
+
+class Deer(wild,Animal):
+    def speak(self):
+        print("Bell")
+    def speciality(self):
+        print("Calm ,Gentle Animal")
+
+class Elephant(wild,Animal):
+    def speak(self):
+        print("Trumphet")
+    def speciality(self):
+        print("Large Animal")
+
+#Domestic
+class Dog(domestic,Animal):
+    def speak(self):
+        print("Bark")
+    def speciality(self):
+        print("Loyal,Playful,Friendly Animal")
+
+class Cat(domestic,Animal):
+    def speak(self):
+        print("Meow")
+    def speciality(self):
+        print("Eat Mice, sleepy Animal")
+
+class Cow(domestic,Animal):
+    def speak(self):
+        print("Moooo")
+    def speciality(self):
+        print("Milk-producing Animal")
+
+class Bullock(domestic,Animal):
+    def speak(self):
+        print("Moooo")
+    def speciality(self):
+        print("Does many work in farm")
+
+class Hen(domestic,Animal):
+    def speak(self):
+        print("Clucking")
+    def speciality(self):
+        print("Give Eggs & for meat purpose")
+
+
+#Wild animal object
+d = Deer()
+d.speak()
+d.place()
+d.speciality()
+
+#OUTPUT
+#Legs =   4
+#Eyes =   2
+#Bell
+#jungle
+#Calm ,Gentle Animal
+
+
+
+#domestic Animal
+tommy = Animal(4,2)
+tommy = Dog("Dogshed")
+tommy.speak()
+tommy.place()
+tommy.speciality()
+
+#OUTPUT
+#Legs =   4
+#Eyes =   2
+#Bark
+#Dogshed
+#Loyal,Playful,Friendly Animal
